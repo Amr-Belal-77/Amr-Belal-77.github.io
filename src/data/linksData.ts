@@ -1,4 +1,4 @@
-import { Github, Globe, Linkedin, Database, Briefcase } from 'lucide-react';
+import { Github, Linkedin, Database, Briefcase } from 'lucide-react';
 
 export const contactInfo = {
     email: 'amrbelal876@gmail.com',

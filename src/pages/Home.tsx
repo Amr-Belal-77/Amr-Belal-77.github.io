@@ -1,18 +1,46 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowDown, Download, Code2, Brain, Database, Monitor, Calendar, X, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowDown, Download, Code2, Brain, Database, Monitor, Calendar, X, ArrowUpRight, ArrowRight, Bot, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
 import Hero3D from '../components/Hero3D';
 import { trainingsData } from '../data/trainingsData';
 import { projectsData } from '../data/projectsData';
+import type { Project } from '../data/projectsData';
 import AnimatedSection from '../components/AnimatedSection';
+import ProjectModal from '../components/ProjectModal';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [selectedCert, setSelectedCert] = useState<string | null>(null);
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const [showAllSkills, setShowAllSkills] = useState(false);
+    const topProjectIds = [
+        'weekly-genai-linkedin-agent',
+        'sourcecraft-research',
+        'ish-intelligent-spherical-home',
+        'raay'
+    ];
+    const topProjects = topProjectIds
+        .map((id) => projectsData.find((project) => project.id === id))
+        .filter((project): project is Project => Boolean(project));
     const scrollToProjects = () => {
         const element = document.getElementById('top-projects');
         element?.scrollIntoView({ behavior: 'smooth' });
     };
 
+
+    const featuredSkills = ['Python', 'Java', 'Javascript', 'OOP', 'ML Techniques', 'LSTM', 'Apache Spark', 'React', 'TypeScript', 'Tailwind CSS'];
+
+    const additionalSkills = [
+        'Agentic AI', 'Multi-Agent Systems', 'LLMs', 'LangGraph', 'Gemini API', 'Prompt Engineering',
+        'Structured Outputs', 'RAG', 'Generative AI', 'Transformers', 'HuggingFace', 'GANs',
+        'Diffusion Models', 'NLP', 'Sentiment Analysis', 'Information Retrieval', 'NLTK', 'Gensim',
+        'Computer Vision', 'CNN', 'YOLO', 'InsightFace', 'Speech-to-Text', 'Text-to-Speech',
+        'Scikit-learn', 'Pandas', 'NumPy', 'K-Means', 'DBSCAN', 'PCA', 'Classification',
+        'Regression', 'Clustering', 'Feature Engineering', 'Matplotlib', 'Seaborn', 'Plotly',
+        'FastAPI', 'Flask', 'Streamlit', 'Node.js', 'Express', 'PHP', 'MySQL', 'PostgreSQL',
+        'Supabase', 'REST APIs', 'Flutter', 'HTML', 'CSS', 'IoT', 'ESP32', 'Raspberry Pi',
+        'Robotics', 'Docker', 'GitHub Actions', 'Pytest'
+    ];
 
     const services = [
         {
@@ -38,6 +66,18 @@ const Home = () => {
             description: 'Creating conversational AI interfaces and advanced text processing solutions.',
             icon: Monitor,
             color: 'bg-indigo-100 text-indigo-600'
+        },
+        {
+            title: 'Agentic AI Systems',
+            description: 'Designing reliable multi-agent workflows that research, verify, reason, and automate complex tasks.',
+            icon: Bot,
+            color: 'bg-violet-100 text-violet-600'
+        },
+        {
+            title: 'LLM Applications',
+            description: 'Building production-focused LLM experiences with structured outputs, RAG, quality gates, and evaluation.',
+            icon: Sparkles,
+            color: 'bg-fuchsia-100 text-fuchsia-600'
         }
     ];
 
@@ -56,7 +96,7 @@ const Home = () => {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
                         </span>
-                        AI Engineer & Full Stack Developer
+                        Applied AI &amp; Generative AI Engineer
                     </div>
 
                     <div className="space-y-2">
@@ -76,18 +116,28 @@ const Home = () => {
                     </div>
 
                     <p className="text-lg text-slate-600 max-w-xl leading-relaxed">
-                        I build intelligent systems that bridge the gap between data and real-world utility.
-                        Specializing in Machine Learning, NLP, and modern Web Technologies.
+                        I build production-ready AI systems that turn data, language, and models into real-world products.
+                        My focus is Applied AI and Generative AI Engineering—from machine learning and LLM applications to agentic, multi-agent workflows.
                     </p>
 
                     <div className="flex flex-wrap gap-4 pt-2">
                         <a
-                            href="/Amr Belal_AI-Engineer_CV.pdf"
+                            href="/Amr_Belal_Applied_AI_GenAI_Engineer_Resume.pdf"
                             download
+                            title="Two-page resume tailored for Applied AI and Generative AI roles"
                             className="btn-liquid px-8 py-3 rounded-full font-bold text-slate-800 flex items-center gap-2 hover:text-primary-600 shadow-lg hover:shadow-primary-200/50 transition-all border border-slate-200 bg-white"
                         >
                             <Download className="w-5 h-5" />
-                            Download Resume
+                            Download Targeted Resume
+                        </a>
+                        <a
+                            href="/Amr Belal_AI-Engineer_CV.pdf"
+                            download
+                            title="Complete four-page CV with the full project history"
+                            className="btn-liquid px-8 py-3 rounded-full font-bold text-slate-700 flex items-center gap-2 hover:text-primary-600 border border-slate-200 bg-white"
+                        >
+                            <Download className="w-5 h-5" />
+                            Download Complete CV
                         </a>
                         <button
                             onClick={scrollToProjects}
@@ -138,10 +188,9 @@ const Home = () => {
                                     <span className="h-1 w-12 bg-primary-600 rounded-full"></span>
                                 </h2>
                                 <p className="text-slate-600 leading-relaxed text-lg md:text-xl font-medium">
-                                    As an <span className="text-primary-600 font-bold">AI Engineer</span>, I am passionate about leveraging the power of data to solve complex problems.
-                                    My journey bridges the gap between theoretical Machine Learning concepts and practical, scalable applications.
-                                    Whether it's building a predictive model, designing a chatbot, or visualizing improved business metrics,
-                                    I drive technical innovation with a user-centric approach.
+                                    As an <span className="text-primary-600 font-bold">Applied AI &amp; Generative AI Engineer</span>, I design and build intelligent systems that move from experimentation to real-world impact.
+                                    My experience spans machine learning, LLM applications, agentic and multi-agent workflows, NLP, computer vision, and end-to-end AI delivery.
+                                    I combine strong engineering fundamentals with practical problem-solving to create reliable, scalable, and user-focused AI products.
                                 </p>
                             </div>
                         </div>
@@ -155,16 +204,41 @@ const Home = () => {
                     <div className="text-center md:text-left">
                         <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 inline-block">Skills & Services</h2>
                         <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-                            {['Python', 'Java', 'Javascript', 'OOP', 'ML Techniques', 'LSTM', 'Apache Spark', 'React', 'TypeScript', 'Tailwind CSS'].map((skill) => (
+                            {featuredSkills.map((skill) => (
                                 <span key={skill} className="px-5 py-2.5 liquid-glass rounded-full text-base font-semibold text-slate-700 border border-white/50 hover:text-primary-600 hover:shadow-lg transition-all cursor-default">
                                     {skill}
                                 </span>
                             ))}
-                            <span className="px-4 py-2 bg-white/20 text-slate-500 rounded-full text-sm font-medium border border-white/20">+ more</span>
+                            <AnimatePresence initial={false}>
+                                {showAllSkills && additionalSkills.map((skill, index) => (
+                                    <motion.span
+                                        key={skill}
+                                        initial={{ opacity: 0, scale: 0.85, y: 8 }}
+                                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                                        exit={{ opacity: 0, scale: 0.85, y: 8 }}
+                                        transition={{ duration: 0.2, delay: Math.min(index * 0.015, 0.25) }}
+                                        className="px-5 py-2.5 liquid-glass rounded-full text-base font-semibold text-slate-700 border border-white/50 hover:text-primary-600 hover:shadow-lg transition-all cursor-default"
+                                    >
+                                        {skill}
+                                    </motion.span>
+                                ))}
+                            </AnimatePresence>
+                            <button
+                                type="button"
+                                onClick={() => setShowAllSkills((current) => !current)}
+                                aria-expanded={showAllSkills}
+                                className="px-5 py-2.5 liquid-glass rounded-full text-sm font-semibold text-primary-600 border border-primary-100 hover:border-primary-300 hover:shadow-lg transition-all inline-flex items-center gap-1.5"
+                            >
+                                {showAllSkills ? (
+                                    <>Show less <ChevronUp size={16} /></>
+                                ) : (
+                                    <>+ more <ChevronDown size={16} /></>
+                                )}
+                            </button>
                         </div>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
                         {services.map((service, idx) => (
                             <motion.div
                                 key={idx}
@@ -200,7 +274,7 @@ const Home = () => {
                                 <h4 className="font-mono text-xl md:text-2xl font-semibold text-primary-600 mt-3">Bachelor's Degree in Artificial Intelligence</h4>
                                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-slate-500 mt-5">
                                     <span className="bg-white/40 border border-white/30 px-5 py-2 rounded-full flex items-center gap-2 font-medium">
-                                        <Calendar size={16} /> 2022 – Present
+                                        <Calendar size={16} /> 2022 – 2026
                                     </span>
                                     <span className="font-bold text-primary-600 bg-primary-50/50 px-5 py-2 rounded-full border border-primary-100/50 text-base">GPA: 3.78</span>
                                 </div>
@@ -270,23 +344,28 @@ const Home = () => {
                 <section id="top-projects" className="space-y-10 px-4">
                     <div className="flex items-end justify-between">
                         <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 inline-block">Top Projects</h2>
-                        <a href="/projects" className="text-primary-600 font-semibold hover:text-primary-700 flex items-center gap-1 transition-colors">
+                        <Link to="/projects" className="text-primary-600 font-semibold hover:text-primary-700 flex items-center gap-1 transition-colors">
                             View all <ArrowRight size={16} />
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
-                        {projectsData.filter(p => ['prosthetic-hand', 'mentassist'].includes(p.id)).map((project, idx) => (
-                            <a
-                                key={idx}
-                                href={project.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group liquid-glass p-8 rounded-2xl border border-white/40 hover:border-primary-300 transition-all hover:shadow-xl relative overflow-hidden"
+                        {topProjects.map((project) => (
+                            <button
+                                type="button"
+                                key={project.id}
+                                onClick={() => setSelectedProject(project)}
+                                className="group liquid-glass p-8 rounded-2xl border border-white/40 hover:border-primary-300 transition-all hover:shadow-xl relative overflow-hidden text-left w-full focus:outline-none focus:ring-2 focus:ring-primary-400"
                             >
                                 <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity text-primary-600">
                                     <ArrowUpRight size={24} />
                                 </div>
+
+                                {project.projectType && (
+                                    <span className="inline-flex mb-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-primary-100/80 text-primary-700 border border-primary-200/70">
+                                        {project.projectType}
+                                    </span>
+                                )}
 
                                 <h3 className="text-2xl font-bold mb-3 text-slate-800 pr-8">{project.title}</h3>
                                 <p className="text-slate-600 mb-6 line-clamp-2">{project.description}</p>
@@ -303,7 +382,7 @@ const Home = () => {
                                         </span>
                                     )}
                                 </div>
-                            </a>
+                            </button>
                         ))}
                     </div>
                 </section>
@@ -319,15 +398,17 @@ const Home = () => {
                         <p className="text-slate-300 max-w-2xl mx-auto mb-10 text-lg">
                             Looking for an AI Engineer to bring your data to life? I'm currently open for freelance projects and opportunities.
                         </p>
-                        <a
-                            href="/links"
+                        <Link
+                            to="/links"
                             className="btn-liquid px-12 py-5 rounded-xl font-bold text-lg text-slate-900 hover:text-primary-700 inline-flex items-center gap-2"
                         >
                             Get in Touch
-                        </a>
+                        </Link>
                     </div>
                 </section>
             </AnimatedSection>
+
+            <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
 
             {/* Certificate Modal */}
             <AnimatePresence>

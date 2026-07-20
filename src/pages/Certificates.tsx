@@ -15,7 +15,7 @@ const Certificates = () => {
                 className="text-center mb-16"
             >
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                    Professional <span className="text-gradient">Certifications</span>
+                    Training &amp; <span className="text-gradient">Certifications</span>
                 </h1>
                 <p className="text-slate-600 max-w-2xl mx-auto">
                     A track record of continuous learning and specialization in modern technologies.
