@@ -12,11 +12,12 @@ export const trainingsData: Training[] = [
         id: '1',
         title: 'Generative AI Intern',
         institution: 'DEPI – EYouth',
-        date: 'Nov 2025 - Present',
+        date: 'Nov 2025 - Jul 2026',
         takeaways: [
             'Deep Learning & Transformers',
             'LLMs & HuggingFace Ecosystem',
-            'GANs & Diffusion Models'
+            'GANs & Diffusion Models',
+            'Agentic AI & Multi-Agent Systems'
         ]
     },
     {

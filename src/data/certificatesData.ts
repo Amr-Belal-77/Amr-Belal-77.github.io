@@ -14,10 +14,10 @@ export const certificatesData: Certificate[] = [
         id: '1',
         title: 'Generative AI Intern',
         issuer: 'DEPI – EYouth',
-        date: 'Nov 2025 - Present',
+        date: 'Nov 2025 - Jul 2026',
         field: 'Artificial Intelligence',
-        description: 'Comprehensive internship covering Deep Learning, LLMs, Transformers, GANs, Diffusion Models, and HuggingFace ecosystem.',
-        skills: ['Deep Learning', 'LLMs', 'Transformers', 'GANs', 'Diffusion Models', 'HuggingFace']
+        description: 'Comprehensive internship covering Deep Learning, LLMs, Transformers, GANs, Diffusion Models, HuggingFace, and Agentic AI systems.',
+        skills: ['Deep Learning', 'LLMs', 'Transformers', 'GANs', 'Diffusion Models', 'HuggingFace', 'Agentic AI', 'Multi-Agent Systems']
     },
     {
         id: '2',

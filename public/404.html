@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting to Amr Belal Portfolio</title>
+    <script>
+      (function (location) {
+        const route = location.pathname
+          .slice(1)
+          .split('/')
+          .map((part) => part.replace(/&/g, '~and~'))
+          .join('/');
+        const query = location.search
+          ? `&${location.search.slice(1).replace(/&/g, '~and~')}`
+          : '';
+
+        location.replace(`${location.origin}/?/${route}${query}${location.hash}`);
+      })(window.location);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to the portfolio…</p>
+  </body>
+</html>

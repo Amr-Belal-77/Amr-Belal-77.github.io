@@ -108,15 +108,16 @@ const Hero3D = () => {
                     className="absolute -top-6 -right-6 px-5 py-3 bg-white/10 backdrop-blur-xl rounded-xl shadow-xl text-sm font-bold text-white border border-white/20 hidden md:flex items-center gap-2"
                 >
                     <span className="w-2 h-2 bg-primary-400 rounded-full animate-pulse"></span>
-                    Deep Learning Architect
+                    Applied AI Engineer
                 </motion.div>
 
                 <motion.div
                     style={{ transform: "translateZ(60px)" }}
                     className="absolute -bottom-6 -left-6 px-5 py-3 bg-slate-900/80 backdrop-blur-xl rounded-xl shadow-xl text-sm font-bold text-primary-400 border border-white/10 hidden md:block"
                 >
-                    Machine Learning Expert
+                    Generative AI Engineer
                 </motion.div>
+
             </motion.div>
         </div>
     );
